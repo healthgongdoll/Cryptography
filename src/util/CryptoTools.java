@@ -135,6 +135,7 @@ public class CryptoTools
 		int[] freq = new int[26];
 		for (int i = 0; i < ar.length; i++)
 		{
+			
 			freq[ar[i] - 'A']++;
 		}
 		return freq;
@@ -145,9 +146,39 @@ public class CryptoTools
 	 **/
 	public static double getIC(byte[] ar)
 	{
-		int ic = 0;
-		// Explained in class
+		double ic = 0;
+		int[] arr = getFrequencies(ar);
+		double [] freq = new double[26];
+		for(int i = 0; i<arr.length;i++)
+		{
+			freq[i] = (double) arr[i]/ar.length;
+		}
+		
+		for(int i = 0; i<freq.length;i++)
+		{
+			ic += freq[i] * freq[i];
+		}
 		return ic;
+	}public static double getMIC(byte[] ar)
+	{
+		int trials = 1500;
+		int count = 0; 
+		double IC = 0;
+		for(int i  = 0; i<=trials; i++)
+		{
+			int pos2; 
+			int pos1 = (int) (ar.length * Math.random());
+			do
+			{
+				pos2 = (int)(ar.length * Math.random()); //random position selection
+				
+			}while(pos2 == pos1);
+			if(ar[pos1] == ar[pos2]) count++;
+			
+			IC = count/(double)i;
+		
+		}
+		return IC;
 	}
 
 }
