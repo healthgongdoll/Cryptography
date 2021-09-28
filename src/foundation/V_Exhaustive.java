@@ -97,7 +97,7 @@ public class V_Exhaustive {
 			}
 			subkey = subkey+1;
 			//각 세그먼트의 키값을 구함
-			//System.out.println(max);
+			System.out.println(max);
 			System.out.println((char) (26-subkey +'A'));
 			
 			//사이퍼 텍스트 해당 세그먼트 자리에 shift를 해줘야됨
