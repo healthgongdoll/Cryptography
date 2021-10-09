@@ -140,26 +140,40 @@ public class CryptoTools
 		}
 		return freq;
 	}
-
+	public static double getOIC(byte[]ar)
+	{
+		/* Equation IC = Sum(1-c) FreqOfLetters/(N(N-1)/c)*/
+		double ic = 0;
+		int[] freqOfLetters = CryptoTools.getFrequencies(ar);
+		int lettersCount = ar.length;
+		double sumOfFreq =0;
+		double sumOfLetters =0;
+		
+		for(int i =0; i< 26; i++)
+			sumOfFreq += freqOfLetters[i]*(freqOfLetters[i]-1);
+		
+		sumOfLetters += lettersCount*(lettersCount-1);
+		
+		ic = sumOfFreq/sumOfLetters;
+		return ic;
+	}
 	/**
 	 * Compute the Index of Coincidence of the given array
 	 **/
 	public static double getIC(byte[] ar)
 	{
 		double ic = 0;
-		int[] arr = getFrequencies(ar);
-		double [] freq = new double[26];
-		for(int i = 0; i<arr.length;i++)
-		{
-			freq[i] = (double) arr[i]/ar.length;
-		}
+		int[] freq = getFrequencies(ar);
+		
+		
 		
 		for(int i = 0; i<freq.length;i++)
 		{
-			ic += freq[i] * freq[i];
+			 ic += ((double)freq[i] / ar.length) * ((double)freq[i] - 1) / (ar.length - 1); 
 		}
 		return ic;
-	}public static double getMIC(byte[] ar)
+	}
+	public static double getMIC(byte[] ar)
 	{
 		int trials = 1500;
 		int count = 0; 

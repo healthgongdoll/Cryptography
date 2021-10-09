@@ -2,55 +2,54 @@ package foundation;
 
 import util.CryptoTools;
 
-public class V_Exhaustive {
+public class V_Exhaustive_new {
 	public static void main(String[] args) throws Exception {
 		int key_length = 2;
-		int count = 0;
+
 		byte[] ciphertext = CryptoTools
 				.fileToBytes("data/q1v1.txt");
 
-		double eIC = 0.0667; //ENglish Index of Coincidence
+		double eIC = 0.0667;
 		double ic = 0;
 		double avgIc = 0;
 		double dotproduct = 0;
 		double[] saveavg = new double[101];
 
-		for (int key = 2; key <= 100; key++) { //loop through the key
+		for (int key = 2; key <= 100; key++) {
+
 			for (int i = 0; i < key; i++) {
 				byte[] decrypt = new byte[ciphertext.length];
+				// 0 번째 .. K번째 까지
 				for (int j = 0; j < ciphertext.length; j++) {
 					if (j % key == i) {
 						decrypt[j] = ciphertext[j];
-						
+
 					}
 				}
-
+				// 배열에 다 들어간 상태
 				decrypt = CryptoTools.clean(decrypt);
-				ic += CryptoTools.getIC(decrypt);
-				
+				ic += CryptoTools.getMIC(decrypt);
+				// 세그먼트마다 ic를 구하고 더한다
 			}
-			
+			// 해당키값의 avgIC를 구함
 			avgIc = ic / key;
 			saveavg[key] = avgIc;
-			System.out.println(avgIc);
+	//		System.out.println(avgIc);
 			ic = 0;
 		}
-		
 		double minIndex = Integer.MAX_VALUE;
-		int index = 0; 
+		int index = 0;
 		for (int i = 0; i < saveavg.length; i++) {
 			double abs = Math.abs(saveavg[i] - eIC);
-			if (saveavg[i]/eIC > 0.90 && saveavg[i]/eIC <1.05) {
+			if (abs < minIndex) {
 				minIndex = abs;
-				count++;
 				index = i;
-				break;
 			}
 		}
 		
-	
+	//	System.out.println(saveavg[9]);
 		System.out.println("Key Length:" +index); // key length 9 
-	//------------------------------------------------------------------------Found the Key Length ----------------------------
+	//------------------------------------------------------------------------Key Length 구함 ----------------------------
 		
 		//break the segment again
 		for(int i =0; i<index; i++)
@@ -97,10 +96,11 @@ public class V_Exhaustive {
 				}
 			}
 			subkey = subkey+1;
-			//get the key for the segment
+			//각 세그먼트의 키값을 구함
 			System.out.println(max);
 			System.out.println((char) (26-subkey +'A'));
 			
+			//사이퍼 텍스트 해당 세그먼트 자리에 shift를 해줘야됨
 			int di = 0;
 			
 			for(int x = 0; x<ciphertext.length;x++)

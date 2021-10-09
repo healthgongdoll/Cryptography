@@ -6,7 +6,7 @@ public class C_Exhaustive {
 
 	public static void main(String[] args) throws Exception {
 		byte[] ciphertext = CryptoTools
-				.fileToBytes("C:\\Users\\Jay Chung\\eclipse-workspace\\EECS3481\\data\\MSG2.ct.txt");
+				.fileToBytes("data/q3v12.txt");
 		int[] letterfreq;
 		double dotproduct = 0;
 		double max = 0; 
@@ -17,10 +17,8 @@ public class C_Exhaustive {
 			for (int i = 0; i < ciphertext.length; i++) {
 
 				ciphertext[i] = (byte) (((ciphertext[i] - 'A') + key) % 26 + 'A');
-				System.out.print((char) ciphertext[i]);
 			}
-			System.out.println();
-			System.out.println();
+
 			letterfreq = CryptoTools.getFrequencies(ciphertext);
 			double sumA = 0,sumB = 0;
 			for(int i = 0; i<26; i++)
@@ -29,7 +27,6 @@ public class C_Exhaustive {
 				sumB += (CryptoTools.ENGLISH[i] * CryptoTools.ENGLISH[i]);
 				dotproduct = dotproduct + ((double) letterfreq[i]) * (CryptoTools.ENGLISH[i]);
 				
-				//System.out.print((double)letterfreq[i]+" ");
 			}
 			dotproduct = dotproduct / Math.sqrt(sumA) / Math.sqrt(sumB);
 			if(dotproduct > max)
@@ -37,11 +34,9 @@ public class C_Exhaustive {
 				max = dotproduct;
 				answer = k;
 			}
-			System.out.println();
-			System.out.println(dotproduct);
-			System.out.println();
+		
 		}
-		System.out.println(answer);
+		System.out.println(max);
 	}
 
 }

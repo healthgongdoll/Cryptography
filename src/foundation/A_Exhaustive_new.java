@@ -10,52 +10,60 @@ import util.CryptoTools;
 public class A_Exhaustive_new {
 	public static void main(String[]args) throws Exception
 	{
-		byte [] cipherText  = CryptoTools.fileToBytes("C:\\Users\\Jay Chung\\eclipse-workspace\\EECS3481\\data\\MSG3.ct.txt");
-		File file = new File("C:\\Users\\Jay Chung\\eclipse-workspace\\EECS3481\\data\\output.txt");   
-		FileWriter fw = new FileWriter(file);
-		BufferedWriter writer = new BufferedWriter(fw);
+		byte [] cipherText  = CryptoTools.fileToBytes("data/test.txt");
 		
+		cipherText = CryptoTools.clean(cipherText);
+		double max = 0;
+		int alp =0;
+		int bet =0;
+		byte [] decrypt = cipherText.clone();
 		for(int a = 1; a<26;a++)
 		{
+			
 			if(gcd(a,26) != 1)
 			{
 				continue;
 			}
 			for(int b = 0; b<=26;b++)
 			{
+				double dotproduct = 0;
 				BigInteger alpha = BigInteger.valueOf(a);
 				BigInteger mod = BigInteger.valueOf(26);
 				
 				for(int i = 0; i<cipherText.length;i++)
 				{
-					cipherText[i] = (byte) (((cipherText[i] - b + 'A') * alpha.modInverse(mod).intValue())%26+'A');
-					writer.write((char) cipherText[i]);
+					decrypt[i] = (byte) (((cipherText[i] - b + 'A') * alpha.modInverse(mod).intValue())%26+'A');
 				}
-				   writer.newLine();
-				int[] letterfreq = CryptoTools.getFrequencies(cipherText);
+				int[] letterfreq = CryptoTools.getFrequencies(decrypt);
 				double sumA = 0,sumB = 0;
-				double dotproduct = 0;
-				double max = 0;
-				for(int i = 0; i<26; i++)
+				
+			
+				
+				
+				for(int i = 0; i<25; i++)
 				{
 					sumA += (letterfreq[i] * letterfreq[i]);
 					sumB += (CryptoTools.ENGLISH[i] * CryptoTools.ENGLISH[i]);
 					dotproduct = dotproduct + ((double) letterfreq[i]) * (CryptoTools.ENGLISH[i]);
 					
-					//System.out.print((double)letterfreq[i]+" ");
 				}
 				dotproduct = dotproduct / Math.sqrt(sumA) / Math.sqrt(sumB);
 				if(dotproduct > max)
 				{
 					max = dotproduct;
+					alp = a;
+					bet = b;
+				
 				}
-			    writer.write(String.valueOf(dotproduct));
-	            writer.newLine();
-				System.out.println();
+		
 			}
 		}
+
+		 System.out.println(max);
+		 System.out.println(alp);
+		 System.out.println(bet);
 		
-		writer.close();
+		
 		
 	}
 	

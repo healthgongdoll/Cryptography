@@ -11,12 +11,12 @@ public class A_Exhaustive {
 	
 	public static void main(String[]args) throws Exception
 	{
-		byte [] cipherText  = CryptoTools.fileToBytes("C:\\Users\\Jay Chung\\eclipse-workspace\\EECS3481\\data\\MSG3.ct.txt");
+		byte [] cipherText  = CryptoTools.fileToBytes("data/test.txt");
 		File file = new File("C:\\Users\\Jay Chung\\eclipse-workspace\\EECS3481\\data\\output.txt");   
 		FileWriter fw = new FileWriter(file);
 		BufferedWriter writer = new BufferedWriter(fw);
 
-	
+		cipherText = CryptoTools.clean(cipherText);
 		byte[] decrypt;
 		   int []letterfreq;
 		   double dotproduct = 0;
