@@ -38,7 +38,7 @@ public class conceptual3 {
 		
 		//Generated Random # and Binary bit
 		//System.out.println(random);
-		String flipedBit = flipBit(ptBin,0);
+		String flipedBit = flipBit(ptBin,random);
 		
 		System.out.println("AF:" + flipedBit);
 		System.out.println("CB:" + CryptoTools.bytesToBin(cipherText));
