@@ -15,6 +15,7 @@ import javax.crypto.spec.SecretKeySpec;
 import util.CryptoTools;
 
 public class conceptual3 {
+	static int changebits;
 	public static void main(String[]args) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException
 	{
 		byte[]plainText = "Facebook".getBytes(); // 2^8 = 256 bits 
@@ -28,16 +29,14 @@ public class conceptual3 {
 		
 		
 		int random = (int) ((Math.random()*(63-0))+0);
-		//String binInt = Integer.toBinaryString(random);
-		//String binIntWithPadding = String.format("%64s",binInt).replaceAll(" ","0");
-		//System.out.println(random);
-		//System.out.println(binIntWithPadding);
 		
-		String ptBin = CryptoTools.bytesToBin(plainText);
-		System.out.println("PB:" + ptBin);
+	
 		
 		//Generated Random # and Binary bit
-		//System.out.println(random);
+		for(int j = 0; j<100; j++)
+		{
+		String ptBin = CryptoTools.bytesToBin(plainText);
+		System.out.println("PB:" + ptBin);
 		String flipedBit = flipBit(ptBin,random);
 		
 		System.out.println("AF:" + flipedBit);
@@ -58,9 +57,11 @@ public class conceptual3 {
 		
 		System.out.println("CF:" + CryptoTools.bytesToBin(cbp));
 		
-		int changebits = countFlip(CryptoTools.bytesToBin(cipherText),CryptoTools.bytesToBin(cbp));
+		changebits += countFlip(CryptoTools.bytesToBin(cipherText),CryptoTools.bytesToBin(cbp));
 		System.out.println("Change Bits: " + changebits);
-		System.out.println("Change Bits Avg:" + (double) changebits/CryptoTools.bytesToBin(cipherText).length());
+		
+		}
+		System.out.println("Change Bits Avg:" + (double) changebits/100);
 	}
 	public static int countFlip(String s1, String s2)
 	{

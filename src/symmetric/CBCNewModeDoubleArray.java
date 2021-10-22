@@ -13,7 +13,7 @@ import javax.crypto.spec.SecretKeySpec;
 
 import util.CryptoTools;
 
-public class CBCNewMode1 {
+public class CBCNewModeDoubleArray {
 
 	public static void main(String[] args) throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException,
 			InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException {
@@ -24,13 +24,13 @@ public class CBCNewMode1 {
 
 		int length = ciphertext.length / 8;
 		byte[][] arr = new byte[length][8];
-
+		//Separate the block
 		for (int i = 0; i < arr.length; i++) {
 			for (int j = 0; j < arr[i].length; j++) {
 				arr[i][j] = ciphertext[i * 8 + j];
 			}
 		}
-
+		// Decryption 
 		for (int i = arr.length - 1; i > 0; i--) {
 			byte[] dt = desDecryptionECBNoPadding(arr[i], key);
 			byte[] neg = negation(arr[i - 1]);

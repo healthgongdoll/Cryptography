@@ -7,7 +7,7 @@ public class V_Exhaustive {
 		int key_length = 2;
 		int count = 0;
 		byte[] ciphertext = CryptoTools
-				.fileToBytes("data/q1v1.txt");
+				.fileToBytes("data/message.txt");
 
 		double eIC = 0.0667; //ENglish Index of Coincidence
 		double ic = 0;

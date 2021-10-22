@@ -11,16 +11,13 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.SecretKeySpec;
 
+import util.CryptoTools;
+
 public class coneceptual4 {
 	public static void main(String[]args) throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException
 	{
 		byte[] plaintext = "Facebook".getBytes();
-		byte[] key = new byte[8];
-		
-		for(int i = 0; i<8; i++)
-		{
-			key[i] = (byte) 0;
-		}
+		byte[] key = {-1,-1,-1,-1,-1,-1,-1,-1};
 		printArr(key);
 		
 		byte[] dt1 = desDecryptionECBNoPadding(plaintext,key);
