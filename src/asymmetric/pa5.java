@@ -13,15 +13,15 @@ public class pa5 {
 		 * 
 		 * 
 		 */
-		BigInteger n = new BigInteger("1033931178476059651954862004553");
-		BigInteger ex = new BigInteger("");
-		System.out.println(ex.isProbablePrime(10));
+		BigInteger n = new BigInteger("103393117847605965195486200455");
+		BigInteger ex = new BigInteger("103393117847605965195486200455");
+		System.out.println(ex.isProbablePrime(20));
 		MillerRabin(ex);
 	}
 
 	public static void MillerRabin(BigInteger n) {
 		BigInteger nSub1 = n.subtract(BigInteger.ONE);
-
+		
 		// compute nSub1 / 2^ m is mod != 0
 		BigInteger two = BigInteger.TWO;
 		BigInteger MONE = new BigInteger("-1");
