@@ -14,7 +14,7 @@ public class pa5 {
 		 * 
 		 */
 		BigInteger n = new BigInteger("103393117847605965195486200455");
-		BigInteger ex = new BigInteger("103393117847605965195486200455");
+		BigInteger ex = new BigInteger("1033931178476059651954862004553");
 		System.out.println(ex.isProbablePrime(20));
 		MillerRabin(ex);
 	}
@@ -35,7 +35,6 @@ public class pa5 {
 		System.out.println(count-1);
 		count = count-1;
 		System.out.println(m);
-	
 		BigInteger b0 = two.modPow(m, n); // T a^m mod n
 		System.out.println(b0);
 		int state = 0;
