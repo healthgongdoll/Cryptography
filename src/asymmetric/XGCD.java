@@ -32,3 +32,21 @@ public class XGCD {
 			   "  [" + result[1].toString() + ", " + result[2].toString() + "]");
     }
 }
+
+/////PART 1 ENDS//////////////////////////////////////////////////////////////////////////////////////////////
+
+		//We can implement 2RSA by choosing a modulus n and two public exponents e1 and e2. In this case,
+		//encryption is done using: c1 = me1 (mod n) followed by c2 = c1e2 (mod n). Is 2RSA stronger than 1RSA? Juystify your answer. 
+		// Answer: no difference since (m^e1)^e2 == M^(e1*e2)
+	
+	////PART 3 ENDS///////////////////////////////////////////////////////////////////////////////////////////////
+		//The exponents e = 1 and e = 2 should not be used in RSA. Why?
+			//If we use e = 1 in RSA and compute c = m1
+			//(mod n), then c is the
+			//plaintext!
+			//In the case of e = 2, We know that ¥õ(n) = (p-1)(q-1)
+			// then GCD(e,¥õ(n))!= 1) since 2 is not prime
+	
+	///PART 4/////////////////////////////////////////////////////////////////////////////////////////////////////
+	//If they are not equal and not relatively prime they can be attacked, and if they are not prime factoring them would be easier
+	// as there exists multiple products that give the same result.

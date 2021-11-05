@@ -13,9 +13,11 @@ public class pa5 {
 		 * 
 		 * 
 		 */
-		BigInteger n = new BigInteger("103393117847605965195486200455");
+
 		BigInteger ex = new BigInteger("1033931178476059651954862004553");
+		//Checking Prime Test
 		System.out.println(ex.isProbablePrime(20));
+		
 		MillerRabin(ex);
 	}
 
@@ -39,7 +41,7 @@ public class pa5 {
 		System.out.println(b0);
 		int state = 0;
 		if (b0.equals(BigInteger.ONE) || b0.equals(n.subtract(BigInteger.ONE))) {
-			System.out.println("It might be Prime");
+			System.out.println("Inconclusive, Probably Prime");
 			state =1;
 		} else {
 			
@@ -47,7 +49,7 @@ public class pa5 {
 				b0 = b0.modPow(BigInteger.TWO, n);
 
 				if (b0.remainder(n).equals(n.subtract(BigInteger.ONE))) {
-					System.out.println("Prime Number");
+					System.out.println("Inconclusive, Probably Prime");
 					state =1;
 					break;
 				}

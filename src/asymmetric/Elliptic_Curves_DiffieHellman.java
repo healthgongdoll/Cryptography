@@ -22,7 +22,7 @@ import javax.crypto.spec.SecretKeySpec;
 
 import util.CryptoTools;
 
-public class pa7 {
+public class Elliptic_Curves_DiffieHellman {
 	public static void main(String[]args) throws NoSuchAlgorithmException, InvalidKeySpecException, InvalidKeyException, NoSuchPaddingException, InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException
 	{
 		//Alice Generating it's public/private keypair
@@ -49,7 +49,7 @@ public class pa7 {
 		ka.doPhase(BpublicKey, true);
 		byte[] shared_secret = ka.generateSecret();
 		
-		//Bob 
+		//Bob Performing Received Alice's Public key and using his private key to Compute ECDH Algorithm to come up secret 
 		ka = KeyAgreement.getInstance("ECDH");
 		ka.init(BprivateKey);
 		ka.doPhase(ApublicKey, true);
@@ -60,15 +60,13 @@ public class pa7 {
 		
 		//Alice can use the shared_secret to create AES instance 
 		
-		byte[] message ="This is a Message from Alice".getBytes();
-		byte[] iv = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		byte[] iv = CryptoTools.hexToBytes("4000000001000000000C00000001000C");
 		IvParameterSpec ivspec = new IvParameterSpec(iv);
 		Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
 		SecretKeySpec secretKey = new SecretKeySpec(shared_secret, "AES");
 		cipher.init(Cipher.ENCRYPT_MODE, secretKey, ivspec);
-		byte[] ciphertext = cipher.doFinal(message);
 		
-		byte[] ct = CryptoTools.hexToBytes("1B709B07A06E10FF16E7D76422E564FB73E63FD8BD69D59E4692104B327896E8");
+		byte[] ct = CryptoTools.hexToBytes("B1803ED24B595CCB11AA39473DC7B10B");
 		
 		//Bob perform decryption using shared secret 
 		

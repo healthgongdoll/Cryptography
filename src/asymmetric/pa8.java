@@ -27,14 +27,14 @@ public class pa8 {
 		//Eve Comes up 
 		// Choose Signature 
 		// let's say 22
-		s = new BigInteger("12");
+		s = new BigInteger("3");
 		//Compute message
 		bX = s.modPow(e, n);
 		
 		
 		//Alice Signature determination 
 		BigInteger xA = s.modPow(e, n);
-		if(xA.equals(bX))
+		if(xA.equals(bX.mod(n)))
 		{
 			System.out.println("Valid Signature");
 		}else
