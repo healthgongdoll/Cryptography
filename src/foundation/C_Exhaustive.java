@@ -5,8 +5,7 @@ import util.CryptoTools;
 public class C_Exhaustive {
 
 	public static void main(String[] args) throws Exception {
-		byte[] ciphertext = CryptoTools
-				.fileToBytes("data/q3v12.txt");
+		byte[] ciphertext = "AOPZPZQHFOLSSV".getBytes();
 		int[] letterfreq;
 		double dotproduct = 0;
 		double max = 0; 
@@ -18,6 +17,12 @@ public class C_Exhaustive {
 
 				ciphertext[i] = (byte) (((ciphertext[i] - 'A') + key) % 26 + 'A');
 			}
+			System.out.print(k + " ");
+			for (int i = 0; i < ciphertext.length; i++) {
+
+				System.out.print((char)ciphertext[i]);
+			}
+			System.out.println();
 
 			letterfreq = CryptoTools.getFrequencies(ciphertext);
 			double sumA = 0,sumB = 0;
@@ -37,6 +42,7 @@ public class C_Exhaustive {
 		
 		}
 		System.out.println(max);
+		System.out.println(answer);
 	}
 
 }

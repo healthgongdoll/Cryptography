@@ -50,7 +50,9 @@ public class ConceptualQ {
 		        val[1] = val2[2];
 		        val[2] = val2[1].subtract(p.divide(q).multiply(val2[2]));
 		    }
-
+		    System.out.println(val[0]);
+		    System.out.println(val[1]);
+		    System.out.println(val[2]);
 		    return val;
 		}
 	    public static BigInteger[] xgcd(BigInteger a, BigInteger b) {

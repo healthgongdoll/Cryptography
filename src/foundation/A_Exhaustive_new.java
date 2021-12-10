@@ -10,7 +10,7 @@ import util.CryptoTools;
 public class A_Exhaustive_new {
 	public static void main(String[]args) throws Exception
 	{
-		byte [] cipherText  = CryptoTools.fileToBytes("data/test.txt");
+		byte [] cipherText  = "Wniir Gwzd zd Cbv".getBytes();
 		
 		cipherText = CryptoTools.clean(cipherText);
 		double max = 0;
@@ -29,11 +29,15 @@ public class A_Exhaustive_new {
 				double dotproduct = 0;
 				BigInteger alpha = BigInteger.valueOf(a);
 				BigInteger mod = BigInteger.valueOf(26);
-				
+				System.out.print("alpha: " + alpha);
+				System.out.print("beta: " + b + " ");
 				for(int i = 0; i<cipherText.length;i++)
 				{
 					decrypt[i] = (byte) (((cipherText[i] - b + 'A') * alpha.modInverse(mod).intValue())%26+'A');
+					System.out.print((char)decrypt[i]);
 				}
+				System.out.println();
+				
 				int[] letterfreq = CryptoTools.getFrequencies(decrypt);
 				double sumA = 0,sumB = 0;
 				
@@ -48,6 +52,7 @@ public class A_Exhaustive_new {
 					
 				}
 				dotproduct = dotproduct / Math.sqrt(sumA) / Math.sqrt(sumB);
+				System.out.println(dotproduct);
 				if(dotproduct > max)
 				{
 					max = dotproduct;

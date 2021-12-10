@@ -1,12 +1,15 @@
 package asymmetric;
 
 import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
+import util.CryptoTools;
 
 public class DiffieHellman{
-	public static void main(String[]args)
+	public static void main(String[]args) throws NoSuchAlgorithmException
 	{
 		/**
-		 * Activity 6
 		 * They agree publicly on the algorithm parameter 
 		 * p and g 
 		 * Alice Private Key = aX
@@ -43,13 +46,11 @@ public class DiffieHellman{
 		 *  
 		 *  
 		 */
-		//Publicly Known Factors 
 		BigInteger p = new BigInteger("341769842231234673709819975074677605139");
 		BigInteger g = new BigInteger("37186859139075205179672162892481226795");
-		//Alice Private
 		BigInteger aX = new BigInteger("83986164647417479907629397738411168307");
-		//Bob Private 
 		BigInteger bX = new BigInteger("140479748264028247931575653178988397140");
+		int r= 1234;
 		
 		//KpubA = A = alpha^a mod (n) = 2^5 (mod 29) = 3
 		BigInteger pubKA = g.modPow(aX, p);
@@ -59,10 +60,17 @@ public class DiffieHellman{
 		
 		BigInteger Kab = pubKB.modPow(aX,p);
 		BigInteger Kba = pubKA.modPow(bX, p);
-		
 		//Hex String
 		System.out.println(Kab.toString(16));
 		System.out.println(Kba.toString(16));
+		
+		BigInteger r1 = new BigInteger("1234");
+		BigInteger Kabplusr = Kab.add(r1);
+		
+		MessageDigest md = MessageDigest.getInstance("SHA-1");
+		byte[] keyses = md.digest(Kabplusr.toByteArray());
+		
+		System.out.println(CryptoTools.bytesToHex(keyses));
 		
 		
 		
