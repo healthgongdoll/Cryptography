@@ -1,3 +1,13 @@
 # Cryptography
 
-This is Cryptography
+Cryptography Studies 
+
+1. Classical Cryptography (Caesar, Vigenere)
+2. Symmetric Cryptography (DES, AES)
+3. Asymmetric Cryptography (RSA, Diffe Hellman)
+4. HASH (MD5, SHA512, HMAC, MAC)
+5. Quantum Cryptography (BB84 Protocol)
+
+
+All contents are copyrighted to healthgongdoll & York University 
+
