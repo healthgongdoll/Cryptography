@@ -8,6 +8,9 @@ Cryptography Studies
 4. HASH (MD5, SHA512, HMAC, MAC)
 5. Quantum Cryptography (BB84 Protocol)
 
+## Introduction
 
-All contents are copyrighted to healthgongdoll & York University 
+Cryptographic Features with Java (Using Java Crypto Library and Mathematical Java Coding (RSA and Stream Ciphers) to solve Cryptography Problems)
+If you want to learn more about Cryptography Please refer to the [Introduction to Computer Security](https://github.com/healthgongdoll/Computer-Security-Study).
+
 
